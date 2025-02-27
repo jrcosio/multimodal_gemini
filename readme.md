@@ -1,7 +1,6 @@
-# [Project Name] 🔍🧠  
+# Multimodales Gemini 2.0 🔍🧠  
 **Explorando Modelos Multimodales con Gemini**  
 
-![Gemini Multimodal Banner](https://via.placeholder.com/800x200.png?text=Gemini+Multimodal+Research) *(Recomendado: Agrega una imagen relacionada)*  
 
 ---
 
