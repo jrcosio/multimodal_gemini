@@ -1,7 +1,6 @@
 # Multimodales Gemini 2.0 🔍🧠  
 **Explorando Modelos Multimodales con Gemini**  
-
-
+Por José Ramón Blanco
 ---
 
 ## 📌 Descripción  
@@ -27,18 +26,14 @@ Repositorio dedicado a la investigación y experimentación con **modelos multim
 ---
 
 ## 🛠️ Tecnologías Utilizadas  
-- **Modelos Gemini** (vía API o implementaciones locales).  
-- **Librerías IA**: TensorFlow/PyTorch, Hugging Face Transformers.  
-- **Procesamiento Multimedia**: OpenCV, Pillow, librosa.  
-- **Visualización**: Matplotlib, Plotly.  
-- **Gestión de Datos**: Pandas, NumPy.  
-
+- **Modelos Gemini** API Gemini Multimodal Live.  
+- **Librerías IA**: Google.
 ---
 
 ## ⚙️ Configuración Rápida  
 
 ### Prerrequisitos  
-- Python 3.8+  
+- Python 3.11+  
 - Cuenta en Google Cloud / API Key para Gemini ([Cómo obtenerla](https://cloud.google.com/))  
 - `pip install -r requirements.txt`  
 
