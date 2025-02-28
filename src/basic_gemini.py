@@ -12,7 +12,7 @@ GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
 
 client = genai.Client(api_key=GEMINI_API_KEY, http_options={'api_version': 'v1alpha'})
-model_id = "gemini-2.0-flash-exp"
+model_id = "gemini-2.0-flash" 
 config = {"response_modalities": ["TEXT"]}
 
 async def main():
