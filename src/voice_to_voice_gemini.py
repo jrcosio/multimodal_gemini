@@ -40,7 +40,7 @@ CONFIG = {
     },
     "generation_config": {
         "response_modalities": ["AUDIO"],
-        "speech_config": "Puck"   #Aoede, Charon, Fenrir, Kore y Puck.
+        "speech_config": "Charon"   #Aoede, Charon, Fenrir, Kore y Puck.
     }
 }
 
