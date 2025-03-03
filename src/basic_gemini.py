@@ -3,8 +3,6 @@ from google import genai
 from dotenv import load_dotenv
 import os
 
-# https://ai.google.dev/gemini-api/docs/multimodal-live?hl=es-419
-# https://github.com/google-gemini/cookbook/blob/main/quickstarts/Get_started_LiveAPI.ipynb
 
 load_dotenv()
 
