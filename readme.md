@@ -42,3 +42,11 @@ Repositorio dedicado a la investigación y experimentación con **modelos multim
 git clone https://github.com/tu-usuario/tu-repositorio.git  
 cd tu-repositorio  
 pip install -r requirements.txt  
+```
+
+### Configuración de .env para la claves de GEMINI
+Crear un fichero .env y añadir:
+```bash
+GEMINI_API_KEY = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+```           
+
