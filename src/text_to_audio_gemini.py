@@ -14,8 +14,6 @@ from IPython.display import display, Audio
 
 MODEL = "gemini-2.0-flash-exp"
 
-# https://ai.google.dev/gemini-api/docs/multimodal-live?hl=es-419
-# https://github.com/google-gemini/cookbook/blob/main/quickstarts/Get_started_LiveAPI.ipynb
 
 load_dotenv()
 
