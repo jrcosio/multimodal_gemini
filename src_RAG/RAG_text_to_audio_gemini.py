@@ -1,22 +1,15 @@
 import asyncio
-import base64
 import contextlib
-import datetime
 import os
-import json
 import wave
-import itertools
 from dotenv import load_dotenv
 from google import genai
 import shutil
-
-from IPython.display import display, Audio
+from rag import Rag
 
 MODEL = "gemini-2.0-flash-exp"
 
-
 load_dotenv()
-
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
 client = genai.Client(api_key=GEMINI_API_KEY, http_options={'api_version': 'v1alpha'})
@@ -71,36 +64,7 @@ async def async_enumerate(it):
     async for item in it:
         yield n, item
         n +=1
-        
-def read_file():
-    with open('./libros/sourcerersstone1.txt', 'r', encoding='utf-8') as file:
-        data = file.read()
-    return data
-
-# 1. Dividir el libro en fragmentos
-def split_text(text, max_length=500):
-    # Divide el texto en fragmentos de aproximadamente `max_length` palabras.
-    words = text.split()
-    return [' '.join(words[i:i+max_length]) for i in range(0, len(words), max_length)]
-
-# 2. Indexar los fragmentos (usando embeddings, ejemplo con SentenceTransformers)
-from sentence_transformers import SentenceTransformer
-import numpy as np
-from sklearn.metrics.pairwise import cosine_similarity
-
-model_embed = SentenceTransformer('all-MiniLM-L6-v2')
-document_text = read_file()  # tu función que lee el libro
-fragments = split_text(document_text)
-fragment_embeddings = model_embed.encode(fragments)
-
-# 3. Función para buscar fragmentos relevantes dada una consulta
-def get_relevant_fragments(query, fragments, fragment_embeddings, top_k=3):
-    query_emb = model_embed.encode([query])
-    similarities = cosine_similarity(query_emb, fragment_embeddings)[0]
-    # Selecciona los top_k fragmentos con mayor similitud
-    top_indices = np.argsort(similarities)[-top_k:]
-    return [fragments[i] for i in top_indices]
-
+ 
 
 SYSTEM_MESSAGE = f"Ayudas a los usuarios siempre en Español."
   
@@ -115,6 +79,7 @@ config = {
 }
 
 async def main():
+    rag = Rag('./libros/harrypotter_caliz.txt')
     borrar_todos_los_audios('./audios')
     numero = 0
     async with client.aio.live.connect(model=MODEL, config=config) as session:
@@ -127,8 +92,8 @@ async def main():
             file_name = f'./audios/audio_{numero}.wav'
             
             # Obtener fragmentos relevantes
-            context_fragments = get_relevant_fragments(message, fragments, fragment_embeddings)
-            context = "\n".join(context_fragments)
+            context_chunk = rag.get_chunk_relevates(message)
+            context = "\n".join(context_chunk)
             
             # Construir el prompt que se enviará a la API
             mensaje_con_contexto = f"""Basándote en el siguiente contexto, responde la pregunta.
