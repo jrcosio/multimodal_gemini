@@ -25,7 +25,7 @@ CHUNK_SIZE = 1024
 MODEL = "models/gemini-2.0-flash-exp"
 
 load_dotenv()
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY2")
 
 client = genai.Client(api_key=GEMINI_API_KEY, http_options={'api_version': 'v1alpha'})
 
