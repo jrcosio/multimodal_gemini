@@ -31,7 +31,7 @@ client = genai.Client(api_key=GEMINI_API_KEY, http_options={'api_version': 'v1al
 
 TIPO = "AUDIO"          #"TEXTO" o "AUDIO"
 
-SYSTEM_MESSAGE = "Eres un asistente experto en tecnología y ayudas a los usuarios siempre en Español."
+SYSTEM_MESSAGE = "Eres un asistente inteligente. Ayudas a los usuarios siempre en Español y siempre dentro del contexto exclusivo de los libros de aventuras. Si no encuentras información relevante, responde honestamente."
 
 #CONFIG = {"generation_config": {"response_modalities": ["TEXT"]}}
 
@@ -65,7 +65,7 @@ class AudioLoop:
             if text is None:
                 continue
             if text.lower().strip() == "salir":
-                print("Saliendo...")
+                print("Saliendo... pulsa Ctrl+C")
                 break
 
             # Obtener fragmentos relevantes (contexto) usando rag
@@ -73,7 +73,17 @@ class AudioLoop:
             context = "\n".join(context_chunk)
 
             # Construir el prompt con contexto
-            mensaje_con_contexto = f"""Eres un asistente de IA que responde basándote en el contexto proporcionado. Si no encuentras información relevante, responde honestamente.
+            mensaje_con_contexto = f"""Eres un asistente inteligente diseñado exclusivamente para apoyar lectores de libros de aventuras, 
+                para el analisis y hacer resumenes de los libros proporcionados. Ayudas a los usuarios siempre en Español 
+                y siempre dentro del contexto exclusivo de los libros de aventuras. Si no encuentras información relevante, responde honestamente.
+                
+                ### **Pautas Clase:**
+                **Responde eclusivamente en ESPAÑOL.** No respondas en otro idioma.
+                **Responde siempre dentro del contexto exclusivo de los libros de aventuras.**
+                **Si no encuentras información relevante, responde honestamente.**
+                **Si no entiendes la pregunta, responde honestamente.**
+                **Si no puedes responder, responde honestamente.**
+                **Cuando respondas, intenta ser lo más claro y conciso posible.**
 
                 Contexto:
                 {context}
